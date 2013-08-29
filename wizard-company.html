@@ -1,0 +1,37 @@
+<!-- Company information wizard
+
+in a 'site' app, there is 1 template for the company information section. Within that, there are multiple articles (about, contact, returns, etc).
+The ID's on these articles must not be changed.
+The first fieldset moves company template into the root of the document. This allows it to be easily 'toggled' as the user switches between templates. siteTemplateFocus should only be run once per wizard.
+After the 'template' is in focus, the article needs to be brought into focus as well.  siteArticleFocus does this and should be run (most likely) in each step of this wizard.
+-->
+
+
+<fieldset class='labelsAsBreaks' data-onfocus="
+	$('#KISS_ABOUT_TEXTAREA').val(magic.inspect('#aboutArticle').html());
+	magic.siteTemplateFocus('#companyTemplate');
+	magic.siteArticleFocus('#aboutArticle','#companyTemplate');
+	">
+	<legend>About</legend>
+	<div><textarea onKeyUp="magic.modify('#aboutArticle','replace',{'html':$(this).val()});" id="KISS_ABOUT_TEXTAREA" placeholder='Company Information'></textarea></div>
+</fieldset>
+
+
+
+<fieldset class='labelsAsBreaks' data-onfocus="
+	$('#KISS_RETURN_TEXTAREA').val(magic.inspect('#returnArticle').html());
+	magic.siteArticleFocus('#returnArticle','#companyTemplate');
+	magic.inspect('#returnArticle').show();
+	">
+	<legend>Return Policy</legend>
+	<div><textarea onKeyUp="magic.modify('#returnArticle','replace',{'html':$(this).val()});" id="KISS_RETURN_TEXTAREA" placeholder='Return Policy'></textarea></div>
+</fieldset>
+
+<fieldset class='labelsAsBreaks' data-onfocus="
+	$('#KISS_PAYMENT_TEXTAREA').val(magic.inspect('#paymentArticle').html());
+	magic.siteArticleFocus('#aboutArticle','#companyTemplate');
+	magic.inspect('#aboutArticle').show();
+	">
+	<legend>Payment Policy</legend>
+	<div><textarea onKeyUp="magic.modify('#paymentArticle','replace',{'html':$(this).val()});" id="KISS_PAYMENT_TEXTAREA" placeholder='Payment Policy'></textarea></div>
+</fieldset>
