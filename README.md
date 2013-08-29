@@ -1,5 +1,5 @@
 site-fashion
 ============
 
-Fashion Site Template (woot)
+Fashion Site Template (woot!)
 
